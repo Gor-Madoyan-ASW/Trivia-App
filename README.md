@@ -31,7 +31,7 @@ Difficulty Levels: Each category offers quizzes at different difficulty levels, 
 ### Key Dependencies
 - @angular/core: 17.3.0
 - @angular/common: 17.3.0
-- @angular/router: angular/router
+- @angular/router: 17.3.0
 
 ### DevDependencies
     "tailwindcss": "^3.4.4",
