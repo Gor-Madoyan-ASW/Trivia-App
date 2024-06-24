@@ -1,4 +1,4 @@
-import { DifficultyColor, DifficultyLevel } from "../enum/enums";
+import { DifficultyColor, DifficultyLevel } from "../enums/enums";
 
 export function shuffleArray<T>(array: T[]): T[] {
   return array
