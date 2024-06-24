@@ -10,6 +10,7 @@ export interface IQuestions {
   question: string
   type: string
   incorrect_answers: string[];
+  answers: string[]
 }
 
 export interface ICategoriesResponse {

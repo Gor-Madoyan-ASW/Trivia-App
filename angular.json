@@ -29,11 +29,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "@angular/material/prebuilt-themes/purple-green.css",
-              "src/colors/colors.scss",
-              "src/styles.scss"
-            ],
+            "styles": [],
             "scripts": []
           },
           "configurations": {

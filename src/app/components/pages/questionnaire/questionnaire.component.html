@@ -1,0 +1,22 @@
+@if (questions.length) {
+  @if(question && this.currentStep < this.questions.length) {
+    <div class="container flex items-center flex-col p-4 mx-auto">
+      <h1 class="text-3xl text-secondary-color font-bold my-8">Question {{ currentStep + 1 }}/{{ questions.length }}</h1>
+      <div
+        class="bg-primary-color px-2 py-1 rounded-xl rounded-tr-none text-white min-w-24 text-center">{{ question.difficulty }}
+      </div>
+      <p class="mt-20 mb-16 text-3xl text-center">{{ question.question }}</p>
+      <div class="flex gap-6 w-full flex-col md:flex-row">
+        @for (option of question.answers; track option) {
+          <button class="flex-1 text-center rounded-2xl p-2 border-2 border-solid w-full border-primary-color px-4"
+                  (click)="onSelecting(option)">{{ option }}
+          </button>
+        }
+      </div>
+    </div>
+  } @else {
+    <app-result [score]="score" [questionsLength]="questions.length"></app-result>
+  }
+} @else {
+  <app-loading/>
+}

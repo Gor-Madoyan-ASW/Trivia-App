@@ -1,0 +1,15 @@
+@if (categories$ | async; as categories) {
+  <div class="container mx-auto flex flex-col items-center p-4">
+    <h1 class="text-3xl text-primary-color font-bold my-8">Trivia App</h1>
+    <app-categories [categories]="categories" (selectedCategory)="selectedCategory($event)"/>
+    <app-button [routerLink]="'/quiz'"
+                [queryParams]="{ category: selectedCategoryId }"
+                [buttonText]="'Start'"
+                [isDisabled]="!selectedCategoryId"
+    />
+  </div>
+} @else {
+  <app-loading/>
+}
+
+
