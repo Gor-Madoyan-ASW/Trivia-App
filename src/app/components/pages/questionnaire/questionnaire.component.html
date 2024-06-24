@@ -3,7 +3,7 @@
     <div class="container flex items-center flex-col p-4 mx-auto">
       <h1 class="text-3xl text-secondary-color font-bold my-8">Question {{ currentStep + 1 }}/{{ questions.length }}</h1>
       <div
-        class="bg-primary-color px-2 py-1 rounded-xl rounded-tr-none text-white min-w-24 text-center">{{ question.difficulty }}
+        class="px-2 py-1 rounded-xl rounded-tr-none text-white min-w-24 text-center" [ngStyle]="{'background-color': difficultySwitcher(question.difficulty)}">{{ question.difficulty }}
       </div>
       <p class="mt-20 mb-16 text-3xl text-center">{{ question.question }}</p>
       <div class="flex gap-6 w-full flex-col md:flex-row">

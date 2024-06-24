@@ -3,9 +3,10 @@ import {QuestionnaireService} from "../../../services/questionnaire.service";
 import {ActivatedRoute} from "@angular/router";
 import { switchMap} from "rxjs";
 import {IQuestions} from "../../../interfaces/questions.interface";
-import {AsyncPipe, NgFor, NgIf} from "@angular/common";
+import {AsyncPipe, NgFor, NgIf, NgStyle} from "@angular/common";
 import {ResultComponent} from "../../result/result.component";
 import {LoadingComponent} from "../../core/loading/loading.component";
+import {difficultySwitcher} from "../../../utils/helper";
 
 @Component({
   selector: 'app-questionnaire',
@@ -15,7 +16,8 @@ import {LoadingComponent} from "../../core/loading/loading.component";
     NgIf,
     NgFor,
     ResultComponent,
-    LoadingComponent
+    LoadingComponent,
+    NgStyle
   ],
   templateUrl: './questionnaire.component.html',
   styleUrl: './questionnaire.component.scss',
@@ -55,4 +57,6 @@ export class QuestionnaireComponent {
     ++this.currentStep;
     this.question = this.questions[this.currentStep];
   }
+
+  protected readonly difficultySwitcher = difficultySwitcher;
 }
