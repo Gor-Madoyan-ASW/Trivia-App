@@ -7,6 +7,15 @@ export function shuffleArray<T>(array: T[]): T[] {
     .map(({ value }) => value);
 }
 
+export function textNormalize(str: string): string {
+  const htmlEntities: { [key: string]: string } = {
+    '&quot;': '"',
+    '&#039;': "'",
+  };
+
+  // Replace HTML entities with their corresponding characters
+  return str.replace(/&quot;|&#039;/g, match => htmlEntities[match] || '');
+}
 
 export function difficultySwitcher(difficulty: string): string {
   switch (difficulty) {

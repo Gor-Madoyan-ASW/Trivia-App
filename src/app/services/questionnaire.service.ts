@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {catchError, map, Observable, retry, throwError} from "rxjs";
 import {ICategoriesResponse, ICategory, IQuestions, IQuestionsResponse} from "../interfaces/questions.interface";
-import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 import {shuffleArray} from "../utils/helper";
 
 @Injectable({

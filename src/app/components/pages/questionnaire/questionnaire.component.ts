@@ -3,27 +3,30 @@ import {QuestionnaireService} from "../../../services/questionnaire.service";
 import {ActivatedRoute} from "@angular/router";
 import { switchMap} from "rxjs";
 import {IQuestions} from "../../../interfaces/questions.interface";
-import {AsyncPipe, NgFor, NgIf, NgStyle} from "@angular/common";
+import {AsyncPipe, NgStyle} from "@angular/common";
 import {ResultComponent} from "../../result/result.component";
 import {LoadingComponent} from "../../core/loading/loading.component";
-import {difficultySwitcher} from "../../../utils/helper";
+import {difficultySwitcher, textNormalize} from "../../../utils/helper";
+import {CallWithPipe} from "../../../pipes/call-with.pipe";
 
 @Component({
   selector: 'app-questionnaire',
   standalone: true,
   imports: [
     AsyncPipe,
-    NgIf,
-    NgFor,
     ResultComponent,
     LoadingComponent,
-    NgStyle
+    NgStyle,
+    CallWithPipe
   ],
   templateUrl: './questionnaire.component.html',
   styleUrl: './questionnaire.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuestionnaireComponent {
+  protected readonly difficultySwitcher = difficultySwitcher;
+  protected readonly textNormalize = textNormalize;
+
   questions: IQuestions[] = [];
   question!: IQuestions;
   answer: string = '';
@@ -49,7 +52,7 @@ export class QuestionnaireComponent {
     this.onNext();
   }
 
-  onNext(): void {
+  private onNext(): void {
     if (this.answer === this.question?.correct_answer) {
       ++this.score;
     }
@@ -57,6 +60,4 @@ export class QuestionnaireComponent {
     ++this.currentStep;
     this.question = this.questions[this.currentStep];
   }
-
-  protected readonly difficultySwitcher = difficultySwitcher;
 }
