@@ -34,7 +34,7 @@ Difficulty Levels: Each category offers quizzes at different difficulty levels, 
 - @angular/router: 17.3.0
 
 ### DevDependencies
-    tailwindcss: 3.4.4,
+    "tailwindcss": "^3.4.4",
 
 ### Installing
 
