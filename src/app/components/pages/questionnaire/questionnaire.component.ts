@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 import {QuestionnaireService} from "../../../services/questionnaire.service";
 import {ActivatedRoute} from "@angular/router";
-import { switchMap} from "rxjs";
+import {Subject, switchMap, take, takeUntil} from "rxjs";
 import {IQuestions} from "../../../interfaces/questions.interface";
 import {AsyncPipe, NgStyle} from "@angular/common";
 import {ResultComponent} from "../../result/result.component";
@@ -23,9 +23,10 @@ import {CallWithPipe} from "../../../pipes/call-with.pipe";
   styleUrl: './questionnaire.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QuestionnaireComponent {
+export class QuestionnaireComponent implements OnDestroy {
   protected readonly difficultySwitcher = difficultySwitcher;
   protected readonly textNormalize = textNormalize;
+  private destroy$ = new Subject<void>();
 
   questions: IQuestions[] = [];
   question!: IQuestions;
@@ -39,7 +40,8 @@ export class QuestionnaireComponent {
               private cd: ChangeDetectorRef) {
 
     this.route.queryParams.pipe(
-      switchMap(({category}) => this.questionnaireService.getQuestions(Number(category)))
+      switchMap(({category}) => this.questionnaireService.getQuestions(Number(category))),
+      takeUntil(this.destroy$)
     ).subscribe((questions) => {
         this.questions = questions;
         this.question = this.questions[this.currentStep];
@@ -59,5 +61,10 @@ export class QuestionnaireComponent {
 
     ++this.currentStep;
     this.question = this.questions[this.currentStep];
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
