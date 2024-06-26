@@ -1,23 +1,17 @@
-<!--<select class="border p-2 rounded" (change)="selectCategory($event)">-->
-<!--  <option value="" disabled selected>Category</option>-->
-<!--  @for (category of categories; track category.id) {-->
-<!--    <option>{{ category.name }}</option>-->
-<!--  }-->
-<!--</select>-->
-
-
-<div style="min-width: 320px" class="relative mb-24 flex flex-col items-center">
+<div class="relative mb-24 flex flex-col items-center min-w-[320px]">
   <h4 class="text-3xl font-bold my-8">Pick a Category</h4>
-  <button class="rounded-2xl p-2 border-2 border-solid w-full bg-white border-primary-color flex justify-between px-4" (click)="toggleCategory()">
-    {{selectedCategoryName || "Category"}}
+    <button #buttonEl class="rounded-2xl p-2 border-2 border-solid w-full bg-white border-primary-color flex justify-between px-4 transition ease-in-out text-quick-silver" [class.text-primary-black]="isOpened || selectedCategoryName"
+          (click)="toggleCategory()">
+    {{ selectedCategoryName || "Category" }}
 
     <svg class="-mr-1 h-5 w-5 text-gray-400 transition-transform" [class.rotate-180]="isOpened" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
       <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
     </svg>
   </button>
-  <ul style="max-height: 300px" class="rounded-2xl top-full p-4 absolute overflow-auto  mt-2 w-full bg-white z-10" [class.hidden]="!isOpened">
+  <ul appClickOutside (clickOutside)="closeCategorySuggestion()" [includeEls]="[buttonEl]" class="rounded-2xl top-full p-4 absolute overflow-auto  mt-2 w-full bg-white z-10 max-h-[300px]" [class.hidden]="!isOpened">
       @for (category of categories; track category.id) {
-        <li class="py-2 px-4 cursor-pointer hover:bg-background-color" (click)="selectCategory(category.id)">{{ category.name }}</li>
+        <li class="py-2 px-4 cursor-pointer hover:bg-gainsboro rounded-2xl hover:text-primary-color" (click)="selectCategory(category.id)">{{ category.name }}</li>
       }
   </ul>
 </div>
+
