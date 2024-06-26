@@ -12,9 +12,6 @@ import {ClickOutsideDirective} from "../../directives/click-outside.directive";
 })
 export class CategoriesComponent {
   @Input() categories: ICategory[] = [];
-  @Input() set categoryListOpened(val: boolean) {
-    this.isOpened = val;
-  }
   @Output() selectedCategory: EventEmitter<number> = new EventEmitter<number>();
   selectedCategoryName: string = '';
   isOpened: boolean = false;
@@ -33,7 +30,7 @@ export class CategoriesComponent {
     this.isOpened = !this.isOpened;
   }
 
-  closeCategorySuggestion(): void {
+  closeCategoryList(): void {
     this.isOpened = false;
   }
 }
