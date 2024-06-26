@@ -11,13 +11,13 @@ import {LoadingComponent} from "../../core/loading/loading.component";
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [
-    AsyncPipe,
-    CategoriesComponent,
-    RouterLink,
-    ButtonComponent,
-    LoadingComponent
-  ],
+    imports: [
+        AsyncPipe,
+        CategoriesComponent,
+        RouterLink,
+        ButtonComponent,
+        LoadingComponent
+    ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,7 +31,6 @@ export class HomeComponent {
 
   selectedCategory(id: number): void {
     if (id) {
-      console.log('id: ', id)
       this.selectedCategoryId = id;
     }
   }

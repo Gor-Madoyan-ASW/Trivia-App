@@ -1,16 +1,20 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {ICategory} from "../../interfaces/questions.interface";
+import {ClickOutsideDirective} from "../../directives/click-outside.directive";
 
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [],
+  imports: [ClickOutsideDirective, ClickOutsideDirective],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoriesComponent {
   @Input() categories: ICategory[] = [];
+  @Input() set categoryListOpened(val: boolean) {
+    this.isOpened = val;
+  }
   @Output() selectedCategory: EventEmitter<number> = new EventEmitter<number>();
   selectedCategoryName: string = '';
   isOpened: boolean = false;
@@ -27,5 +31,9 @@ export class CategoriesComponent {
 
   toggleCategory(): void {
     this.isOpened = !this.isOpened;
+  }
+
+  closeCategorySuggestion(): void {
+    this.isOpened = false;
   }
 }

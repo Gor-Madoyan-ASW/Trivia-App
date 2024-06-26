@@ -8,8 +8,8 @@
       <p class="mt-20 mb-16 text-3xl text-center">{{ textNormalize | callWith:  question.question }}</p>
       <div class="flex gap-6 w-full flex-col md:flex-row">
         @for (option of question.answers; track option) {
-          <button class="flex-1 text-center rounded-2xl p-2 border-2 border-solid w-full border-primary-color px-4"
-                  (click)="onSelecting(option)">{{ option }}
+          <button class="flex-1 text-center rounded-2xl p-2 border-2 border-solid w-full border-primary-color px-4 text-text-primary hover:text-deep-moss-green hover:bg-gainsboro hover:border-none hover: transition ease-in-out"
+                  (click)="onSelecting(option)">{{ textNormalize | callWith: option }}
           </button>
         }
       </div>
